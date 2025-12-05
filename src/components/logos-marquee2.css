@@ -1,0 +1,83 @@
+.marquee2 {
+  background: transparent;
+  /* dark strip like your screenshot */
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  width: 100%;
+  padding: 12px 0;
+  /* props */
+  --marquee2-height: 56px;
+  --marquee2-gap: 64px;
+  --marquee2-duration: 30s;
+  position: relative; /* Needed for pseudo-elements positioning */
+}
+
+.marquee2::before,
+.marquee2::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 20%; /* Adjust the width for the blur effect */
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1); /* Optional: light overlay to enhance the blur effect */
+  z-index: 1;
+}
+
+.marquee2::before {
+  left: 0;
+  background: linear-gradient(90deg, #FAF5EB 5%, rgba(115, 115, 115, 0.00) 100%); /* Blur fading from left */
+}
+
+.marquee2::after {
+  right: 0;
+  background: linear-gradient(270deg, #FAF5EB 5%, rgba(115, 115, 115, 0.00) 100%); /* Blur fading from right */
+}
+.marquee2__track {
+  display: flex;
+  align-items: center;
+  gap: var(--marquee2-gap);
+  width: max-content;
+  will-change: transform;
+  animation: marquee2-scroll var(--marquee2-duration) linear infinite;
+}
+
+.marquee2:hover .marquee2__track {
+  animation-play-state: paused;  /* pause on hover */
+}
+
+.marquee2__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--marquee2-height);
+}
+
+.marquee2__img {
+  display: block;
+  height: var(--marquee2-height);
+  width: auto;
+  opacity: 1;
+  transition: opacity .2s ease, filter .2s ease, transform .2s ease;
+}
+
+.marquee2__img--muted {
+  filter: grayscale(100%) contrast(0.9) brightness(1.05);
+}
+
+.marquee2__img:hover {
+  opacity: 1;
+  filter: none;
+  transform: translateY(0px);
+}
+
+/* Seamless loop: move left by half the track (since we duplicated the list) */
+@keyframes marquee2-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-50%)); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee2__track { animation: none; transform: none; }
+}

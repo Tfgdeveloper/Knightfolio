@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+:root {
+  --bg: #333435;
+  --main-font: "Inter", sans-serif;
+
+}
+
+body {
+  background-color: var(--bg);
+  font-family: var(--main-font);
+  overflow-x: hidden;
+}
+.fontext{
+  font-family:  "Inter", sans-serif;
+}

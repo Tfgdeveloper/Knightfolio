@@ -1,0 +1,61 @@
+.marquee {
+
+     /* dark strip like your screenshot */
+
+  overflow: hidden;
+  width: 100%;
+  padding: 12px 0;
+  /* props */
+  --marquee-height: 56px;
+  --marquee-gap: 64px;
+  --marquee-duration: 30s;
+}
+
+.marquee__track {
+  display: flex;
+  align-items: center;
+  gap: var(--marquee-gap);
+  width: max-content;
+  will-change: transform;
+  animation: marquee-scroll var(--marquee-duration) linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;  /* pause on hover */
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--marquee-height);
+}
+
+.marquee__img {
+  display: block;
+  height: var(--marquee-height);
+  width: auto;
+  opacity: .85;
+  transition: opacity .2s ease, filter .2s ease, transform .2s ease;
+}
+
+.marquee__img--muted {
+  filter: grayscale(100%) contrast(0.9) brightness(1.05);
+}
+
+.marquee__img:hover {
+  opacity: 1;
+  filter: none;
+  transform: translateY(-1px);
+}
+
+/* Seamless loop: move left by half the track (since we duplicated the list) */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-50%)); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; transform: none; }
+}
