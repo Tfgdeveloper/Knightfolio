@@ -8,7 +8,6 @@ import Contact from './pages/Contact';
 import Services from './pages/Services';
 import  PortfolioPage  from './pages/Portfolio';
 
-import Logodesign from './pages/LogoDesign';
 import Webdesignanddevelopment from './pages/Web design and development';
 import GraphicDesignandIllustrations from './pages/Graphic Design and Illustrations';
 import Socialmedia from './pages/Social media';
@@ -32,7 +31,7 @@ ReactDOM.createRoot(root).render(
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/logodesign" element={<Logodesign/>} />
+          
           <Route path="/web-design-and-development" element={<Webdesignanddevelopment/>} />
           <Route path="/graphic-design-and-illustrations" element={<GraphicDesignandIllustrations/>} />
           <Route path="/social-media-content-and-management" element={<Socialmedia/>} />
